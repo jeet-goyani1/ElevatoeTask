@@ -70,27 +70,27 @@ let E_data = [
     {
         'floor': 0,
         'id': 0,
-        'move': false,
+        'move':false,
     },
     {
         'floor': 0,
         'id': 1,
-        'move': false,
+        'move':false,
     },
     {
         'floor': 0,
         'id': 2,
-        'move': false,
+        'move':false,
     },
     {
         'floor': 0,
         'id': 3,
-        'move': false,
+        'move':false,
     },
     {
         'floor': 0,
         'id': 4,
-        'move': false,
+        'move':false,
     },
 ]
 
@@ -119,47 +119,47 @@ export const Table = () => {
             });
         }
 
-        if (val.floor !== closest) {
-
-            let newData = flor.map((value, index) => {
-                if (ind === index) {
-                    value.button = true;
-                    return value;
-                }
+        if(val.floor !== closest){
+            
+        let newData = flor.map((value, index) => {
+            if (ind === index) {
+                value.button = true;
                 return value;
-            })
-            setFloor(newData);
+            }
+            return value;
+        })
+        setFloor(newData);
 
-            if (closest === undefined || closest === 0) {
-                eData = elevetor.map((value, index) => {
-                    if (value.floor === 0) {
-                        for (let n = 0; n < E_data.length; n++) {
-                            if (element.length === 0) {
-                                for (let i = 0; i <= data.length; i++) {
-                                    if (i <= val.floor) {
-                                        value.move = true;
-                                        moveElevator(index, value.floor, val.floor);
-                                    }
+        if (closest === undefined || closest === 0) {
+            eData = elevetor.map((value, index) => {
+                if (value.floor === 0) {
+                    for (let n = 0; n < E_data.length; n++) {
+                        if (element.length === 0) {
+                            for (let i = 0; i <= data.length; i++) {
+                                if (i <= val.floor) {
+                                    value.move = true;
+                                    moveElevator(index, value.floor, val.floor);
                                 }
                             }
-                            element.push(value)
-                            break;
                         }
+                        element.push(value)
+                        break;
                     }
-                    return value;
-                });
-            } else {
-                eData = elevetor.map((value, index) => {
-                    if (closest !== val.floor) {
-                        if (value.floor === closest && value.floor !== 0) {
-                            value.move = true;
-                            moveElevator(index, value.floor, val.floor);
-                        }
+                }
+                return value;
+            });
+        } else {
+            eData = elevetor.map((value, index) => {
+                if (closest !== val.floor) {
+                    if (value.floor === closest && value.floor !== 0) {
+                        value.move = true;
+                        moveElevator(index, value.floor, val.floor);
                     }
-                    return value;
-                });
-            }
-            setElevetor(eData);
+                }
+                return value;
+            });
+        }
+        setElevetor(eData);
         }
 
     };
@@ -183,17 +183,17 @@ export const Table = () => {
                 moveElevator(elevatorIndex, currentFloor - 1, targetFloor);
             }
             else {
-                but(elevatorIndex, targetFloor);
+                but(elevatorIndex,targetFloor);
             }
         }, 500);
     };
 
-    const but = (elevatorIndex, targetFloor) => {
+    const but = (elevatorIndex , targetFloor) => {
         const newData = flor.map((value) => {
             if (value.floor === targetFloor) {
                 value.arrived = true;
                 value.button = false;
-                elevetor[elevatorIndex].move = false;
+                elevetor[elevatorIndex].move = false; 
             }
             return value;
         });
@@ -203,7 +203,7 @@ export const Table = () => {
                 currentFloors.map((value) => {
                     if (value.arrived) {
                         value.arrived = false;
-                        elevetor[elevatorIndex].move = false;
+                        elevetor[elevatorIndex].move = false; 
                     }
                     return value;
                 })
